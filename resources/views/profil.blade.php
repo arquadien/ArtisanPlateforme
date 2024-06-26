@@ -19,21 +19,20 @@
         <nav class="container">
             <ul class="nav justify-content-end">
                 <li class="nav-item">
-                    <a class="nav-link active" aria-current="page" href="Acceuil.html"><u>Retour à l'acceuil </u> </a>
+                    <a class="nav-link active" aria-current="page" href="{{route('accueil')}}"><u>Retour à l'acceuil </u> </a>
                 </li>
                 <li class="nav-item">
                     <a  class="nav-link" href="#"><i class="fa-regular fa-bell"></i></a>
                 </li>
-                <img src="asset/image/d.jpg" alt="" class="user-img" onclick="toggleMenu()">
-
+                <img src="storage\{{ Auth::user()->photo }}" alt="" class="user-img" onclick="toggleMenu()">
                 <div class="menu-wrap" id="subMenu">
                     <div class="sub-menu ">
                         <div class="user-2">
-                            <img src="asset/image/d.jpg" class="user-imgs" alt="">
-                            <h3>Timite Adja</h3>
+                            <img src="storage\{{ Auth::user()->photo }}" class="user-imgs" alt="">
+                            <h3>{{ Auth::user()->nom }}</h3>
                         </div>
                         <hr>
-                        <a href="POFIL.html" class="user-icone">
+                        <a href="{{ route('profil') }}" class="user-icone">
                             <i class="fa-solid fa-user"></i>
                             <p>Mon profil</p>
                             <span>></span>
@@ -46,7 +45,11 @@
                         </a>
                         <a href="#" class="user-icone">
                             <i class="fa-solid fa-arrow-right-from-bracket"></i>
-                            <p>Se deconnecter</p>
+                            <form action="{{route('logout')}}" method="post">
+                              @method("delete")
+                              @csrf
+                              <button style="border: none; background: none;">se déconnecter</button>
+                            </form>
                             <span>></span>
                         </a>
                     </div>
@@ -59,7 +62,7 @@
 <nav class="user">
     <ul class="nav justify-content-center ">
         <li class="nav-item">
-          <a class="nav-link active" aria-current="page" href="POFIL.html">Tableau de bord</a>
+          <a class="nav-link active" aria-current="page" href="{{route('profil')}}">Tableau de bord</a>
         </li>
         <li class="nav-item">
           <a class="nav-link" href="publication.html">Publication d'article</a>
@@ -72,29 +75,29 @@
         </li>
       </ul>
     </nav>
-
+  
     <div style="background-color: #E7E6E3; padding-top: 10px; "  >
         <div class="container ">
             <div class="row ">
         <div class="col-md-4 mt-2 ">
-            <img id="img"  src='asset/image/la-ministre-de-leducation-nationale-et-de-lalphabetisation-mariatou-kone_tv70qug4z4g.jpg' alt=''/>
+            <img id="img"  src='storage\{{ Auth::user()->photo }}' alt=''/>
         </div>
     <div class="col-md-4">
-        <h1 class="mt-5 text-center">NOM PRENOM
+        <h1 class="mt-5 text-center">{{ Auth::user()->nom }} {{ Auth::user()->prenoms }}
         </h1>
-        <h5 class="mt-5">Metier : Menuiserire </h5>
+        <h5 class="mt-5">Metier : {{ $metier->domaine }}</h5>
     </div>
     <div  class="mt-5 col-md-4 text-center ">
-         <a id="what" href="https.//wa.me/ 234567890"><i class="fa-brands fa-whatsapp"></i></a> 
+         <a id="what" href="https.//wa.me/ {{ Auth::user()->numero_whatsapp }}"><i class="fa-brands fa-whatsapp"></i></a> 
 
-         <a id="tel" href="tel: 22502028789"><i class="fa-solid fa-phone"></i></a>
+         <a id="tel" href="tel: {{ Auth::user()->phone}}"><i class="fa-solid fa-phone"></i></a>
         
     
       </div>
       <div class="mt-4 col-md-6"><h5>Année d'experience <br>
          <p style="margin-left: 50px;" >10ans</p> </h5></div>
 
-    <div  class="  col-md-6"><h5>Lieu du travail : ABOBO</h5></div>
+    <div  class="  col-md-6"><h5>Lieu du travail : {{ Auth::user()->quartier }} / {{ Auth::user()->quartier }}</h5></div>
     
 
 
@@ -116,9 +119,8 @@
 
 
     <div class=" mt-2 col-md-6 "><h5>Service proposée:</h5>
-    <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Commodi nulla tenetur rerum? Facilis, error ad.
-       Temporibus voluptas ipsum fugiat impedit placeat, fugit vero saepe quis vel qui odit atque esse.
-    </p></div>
+    <p>{{ $metier->description}}</p>
+    </div>
     <div class=" mt-2 col-md-6"><h5>Jour de travail:</h5>
     <p>Lundi,Mardi,Mercredi</p></div>
 

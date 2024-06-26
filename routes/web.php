@@ -24,16 +24,23 @@ Route::get('/formulaire_de_demande_de_service', [AppController::class, 'service'
 
 Route::get('/abonnement', [AppController::class, 'abonnement'])->name('abonnement');
 
-Route::get('/inscription', [AuthController::class, 'inscriptionForm'])->name('enregistrementForm');
-Route::post('/inscription', [AuthController::class, 'enregistrement'])->name('enregistrement'); 
+Route::middleware(['guest'])->group(function () {//Route accessible seulement en etant déonnecter
+     
+    Route::get('/inscription', [AuthController::class, 'inscriptionForm'])->name('enregistrementForm');
+    Route::post('/inscription', [AuthController::class, 'enregistrement'])->name('enregistrement'); 
+    Route::get('/login', [AuthController::class, 'connexionForm'])->name('connexionForm');
+    Route::post('/login', [AuthController::class, 'connexion'])->name('connexion'); 
+});
  
-Route::get('/login', [AuthController::class, 'connexionForm'])->name('connexionForm');
-Route::post('/login', [AuthController::class, 'connexion'])->name('connexion'); 
 
 Route::get('/plus_de_service', [AppController::class, 'plusService'])->name('plusService');
 
 Route::get('/info_sur_nos_service/{id}', [AppController::class, 'infosurnosservice'])->name('infosurnosservice');
 
 //route sécurisé 
-Route::get('/profil', [AppController::class, 'profil'])->name('profil');
+Route::middleware(['auth'])->group(function () {
+    Route::get('/profil', [AppController::class, 'profil'])->name('profil');
+    Route::delete('/logout', [AuthController::class, 'Déconnexion'])->name('logout');
+});
+
     

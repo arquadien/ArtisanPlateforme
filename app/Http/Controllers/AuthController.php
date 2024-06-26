@@ -68,6 +68,11 @@ class AuthController extends Controller
         return view('Auth.Connecter');
     }
 
+    public function Déconnexion(){
+        Auth::logout();
+        return redirect(route('connexionForm'));
+    }
+
     public function connexion(Request $request){
         //dd($request->only(['phone', 'password']));
 

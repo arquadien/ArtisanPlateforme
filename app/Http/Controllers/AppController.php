@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Http\Controllers\DB;
 use App\Models\Metier;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class AppController extends Controller
 {
@@ -36,7 +37,9 @@ class AppController extends Controller
     }
 
     public function profil (){
-        return view('profil');
+       $metier = Metier::find(Auth::user()->id);
+       //dd($metier); 
+        return view('profil', ['metier'=> $metier]);
     }
 
 
