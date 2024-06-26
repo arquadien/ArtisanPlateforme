@@ -13,15 +13,18 @@
 <button id="user_boutton">Retour à l'acceuil</button></a></div>
   
   <div class="container" id="s6_contain">
-    <h2>Se connecter</h2><hr>
+    <h2 style="text-align : center;">Se connecter</h2><hr>
+  @if(Session::get('erreur_msg'))
+    <b style="color: red; text-align : center;">{{ Session::get('erreur_msg') }}</b>
+  @endif
     
 <form class="container" action="{{route('connexion')}}" method="post">
   @csrf
     <label for="" class="form-label mt-3">Numero de telephone</label>
-   <input class="form-control" type="tel" pattern="[0-9]+" placeholder="numero de telephone" name="numero_de_telephone" required value="{{old('numero_de_telephone')}}">
+   <input class="form-control" type="tel"  placeholder="phone" name="phone" required value="{{old('numero_de_telephone')}}">
    <div class="s6_motdepasse">
    <label for="" class="form-label mt-3">Mot de passe</label>
-   <input class="form-control" type="password" name="mot_de_passe" placeholder="mot de passe" required>
+   <input class="form-control" type="password" name="password" placeholder="mot de passe" required>
    <i class="fa-regular fa-eye"></i>
 </div>
    <input type="checkbox">

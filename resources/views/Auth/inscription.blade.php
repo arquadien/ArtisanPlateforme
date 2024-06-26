@@ -13,8 +13,11 @@
  
     <div class="">
           <h1 style="color:  green;" class="text-center">INSCRIPTION ARTISANT</h1></div>
+          @if(Session::get('error'))
+            <b style="color: red; text-align : center;">{{ Session::get('error') }}</b>
+          @endif
     
-    <form class=" container mt-2" method="Post" action="{{route ('enregistrement')}}" enctype="multipart/form-data">
+    <form class=" container mt-2" method="post" action="{{route ('enregistrement')}}" enctype="multipart/form-data">
     @csrf
       <div class="row">
         <div class="col-md-6">
@@ -26,7 +29,7 @@
           <input  class="form-control" type="text" name="prenoms" pattern="[a-zA-Z]+" required> </div>
         <div  class="col-md-6 motdepasse">
             <label class="form-label" for="">Mot de passe</label>
-          <input  class="form-control" type="password" name="mot_de_passe" required>   <i class="fa-regular fa-eye"></i></div>
+          <input  class="form-control" type="password" name="password" required>   <i class="fa-regular fa-eye"></i></div>
         
         <div  class="col-md-6 confirmation">
           <label class="form-label" for="">Confirmation mot de passe</label>
@@ -35,7 +38,7 @@
         
         <div  class="col-md-6">
             <label class="form-label" for="">Numéro de téléphone</label>
-          <input class="form-control" name="numero_de_telephone" type="tel" pattern="[0-9]+" required> </div>
+          <input class="form-control" name="phone" type="tel"  required> </div>
           <div  class="col-md-6">
             <label class="form-label" for="">Numéro whatsapp</label>
           <input  class="form-control" type="tel" name="numero_whatsapp" pattern="[0-9]+" required> </div>
@@ -82,7 +85,7 @@
           <input class="form-control" type="file" name="photo" accept="image/*" required>
       </div>
       <div  class="col-md-6 ">
-        <input class="form-control s5_input" type="submit" name="photo">
+        <input class="form-control s5_input" type="submit"  value="Soumettre">
       </div>
      <div   class="col-md-6 inscription">
     <a id="btninscription" href="{{ route('accueil') }}" class="btn btn-outline fw-bold">Retour</a>

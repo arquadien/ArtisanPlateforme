@@ -52,11 +52,5 @@ class User extends Authenticatable
         'email_verified_at' => 'datetime',
     ];
 
-    public function metier (){
-        return $this->belongsTo(Metier::class);
-    }
 
-    public function getAuthPassword() {
-        return $this->mot_de_passe;
-    }
 }

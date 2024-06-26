@@ -22,16 +22,16 @@ class LoginRequest extends FormRequest
     public function rules(): array
     {
         return [
-           'numero_de_telephone'=>['required'],
-           'mot_de_passe'=>['required', 'min:4']
+           'password' => 'required|string|min:8', //règle de validation pour le mot de passe
+            'phone' => 'required|string',
         ];
     }
 
     public function erreurs (){
         return[
-            'umero_de_telephone.required'=>'Entrez svp votre numero',
-            'mot_de_passe.required'=>'Entrez svp votre mot de passe',
-            'mot_de_passe.min:4'=>'Votre mot de passe doit faire au minimum 4 caractères ',
+            'phone.required'=>'Entrez svp votre numero',
+            'password.required'=>'Entrez svp votre mot de passe',
+            'password.min:8'=>'Votre mot de passe doit faire au minimum 4 caractères ',
         ];
 
     }
