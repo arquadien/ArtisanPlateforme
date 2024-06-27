@@ -32,6 +32,10 @@ class AppController extends Controller
         return view('Formulairedemandedeservice');
     }
 
+    public function contact (){
+        return view('Contact');
+    }
+
     public function abonnement (){
         return view('Abonnements');
     }

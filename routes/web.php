@@ -24,6 +24,8 @@ Route::get('/formulaire_de_demande_de_service', [AppController::class, 'service'
 
 Route::get('/abonnement', [AppController::class, 'abonnement'])->name('abonnement');
 
+Route::get('/contact', [AppController::class, 'contact'])->name('contact');
+
 Route::middleware(['guest'])->group(function () {//Route accessible seulement en etant déonnecter
      
     Route::get('/inscription', [AuthController::class, 'inscriptionForm'])->name('enregistrementForm');

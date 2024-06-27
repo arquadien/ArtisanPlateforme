@@ -17,58 +17,7 @@
         
       </div>
       <!---DEBUT NAVBAR-->
-      <nav class="navigation fixed-top">
-        <a class="logo" href="#">ArtisanExpress</a>
-        <div class="nav-link">
-            <ul>
-                <li>
-                  <a href="Acceuil.html">Acceuil</a>
-                </li>
-                <li >
-                  <a href="Formulairedemandedeservice.html">Demande de services</a>
-                </li>
-                <li >
-                  <a href="Abonnements.html">Abonnement</a>
-                </li>
-                <li >
-                  <a href="Contact.html">Contact</a>
-                </li>
-    
-              </ul>
-              <button id="btn1" class="btn"> <a href="inscription.html">S'inscrire</a></button>
-              <button id="btn2" class="btn "> <a href="Connecter.html">Se connecter</a> </button>
-            </div>
-              <div class="user-profil">
-                <img src="asset/image/d.jpg" alt="" class="user-img" onclick="toggleMenu()">
-    
-                <div class="menu-wrap" id="subMenu">
-                  <div class="sub-menu ">
-                    <div class="user-2">
-                      <img src="asset/image/d.jpg" class="user-imgs" alt="">
-                      <h3>Timite Adja</h3>
-                    </div>
-                    <hr>
-                    <a href="POFIL.html" class="user-icone">
-                      <i class="fa-solid fa-user"></i>
-                      <p>Mon profil</p>
-                      <span>></span>
-                    </a>
-                    <a href="modifierinformation.html" class="user-icone">
-                      <i class="fas fa-user-edit"></i>
-                      <p>Modifier mes information</p>
-                      <span>></span>
-                  </a>
-                    </a>
-                    <a href="#" class="user-icone">
-                      <i class="fa-solid fa-arrow-right-from-bracket"></i>
-                      <p>Se deconnecter</p>
-                      <span>></span>
-                    </a>
-                  </div>
-                </div>
-              </div>
-        <div class="iconebars"> <i class="fa-solid fa-bars"></i></div>
-    </nav>
+      @extends('Layout.navbar')
     
       <!--FIN NAVBAR -->
 
