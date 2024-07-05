@@ -14,8 +14,8 @@
   
   <div class="container" id="s6_contain">
     <h2 style="text-align : center;">Se connecter</h2><hr>
-  @if(Session::get('erreur_msg'))
-    <b style="color: red; text-align : center;">{{ Session::get('erreur_msg') }}</b>
+  @if(Session::get('erreur'))
+    <b style="color: red; text-align : center;">{{ Session::get('erreur') }}</b>
   @endif
     
 <form class="container" action="{{route('connexion')}}" method="post">

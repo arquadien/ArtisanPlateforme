@@ -38,6 +38,11 @@ class Artisan extends Model implements Authenticatable
         return $this->belongsTo(Metier::class);
     }
 
+    public function articles()
+    {
+        return $this->hasMany(Article::class);
+    }
+
     protected $hidden = [
         'password',
         'remember_token',

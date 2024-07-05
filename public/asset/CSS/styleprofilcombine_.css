@@ -1,10 +1,10 @@
-* {
+*{
     margin: 0;
     padding: 0;
-    list-style: none;
-}
 
-/*NAVIGATION 1*/
+}
+/*NAVBAR*/
+
 #nav {
     background-color: #ff9900;
     height: 40px;
@@ -93,13 +93,6 @@
     font-size: 22px;
 }
 
-#img {
-    border-radius: 50%;
-    width: 200px;
-    height: 200px;
-
-}
-
 .nav-item a i {
     font-size: 30px;
     color: black;
@@ -114,7 +107,40 @@
     font-weight: bold;
 }
 
-/*DEBUT PARTIE TABLEAU DE BORD */
+
+
+
+
+
+
+
+/*PROFIL*/
+#img {
+    border-radius: 50%;
+    width: 150px;
+    height: 150px;
+    overflow: hidden;
+   
+}
+#img img{
+    width: 100%;
+    height: 100%;
+    display: block;
+    border-radius: 50%;
+    object-fit: cover; 
+    
+   
+}
+.partieprofil1{
+   align-items: center;
+  padding: 10px;
+position: relative;}
+#iconecrayon{
+    position: absolute;
+    right: 10px;
+   color: #ff9900;
+   
+}
 #tel,
 #what {
     font-size: 40px;
@@ -128,83 +154,33 @@
 #what {
     color: green;
 }
+.partieprofil2{
+position: relative;
+   padding: 10px;}
 
-#evaluation i.fa-star {
+   /*EVALUATION ET TEMOIGNAGE*/
+   .etoile i {
     color: yellow;
 }
 
-/*TEMOIGNAGE*/
-.box-top {
-    box-shadow: 2px 2px 2px whitesmoke;
-    background-color: whitesmoke;
-    padding: 10px;
-}
+/*PARTIE CRAYON*/
 
-.etoile i {
-    color: yellow;
-}
-
-#avis a {
-    text-decoration: none;
-
-}
-
-.owl-nav {
-    display: none;
-}
-
-/*FIN PARTIE TABLEAU DE BORD */
-
-
-
-
-
-
-
-/* PARTIE LISTE D'ARTICLE*/
-.card {
-    overflow: hidden;
-    padding: 10px;
-    margin: 5px;
-}
-.card img{
-    height: 300px;
-}
-
-/*PARTIE MODIFICATION D'INFORMATION*/
-.information .mt-2 {
-    position: relative;
-}
-
-.information label.form-label {
-    position: absolute;
-    top: 8px;
-    left: 20px;
-    font-size: 14px;
-    background-color: white;
-
-
-}
-
-input[type="text"],
-input[type="password"] {
-    margin-top: 20px;
-    width: 100%;
-    height: 40px;
-
-}
-
-.btprofil {
-    position: absolute;
-    right: 100px;
-
-}
 
 .choisirunephoto {
     position: absolute;
-    visibility: hidden;
-    width: 1px;
-    height: 1px;
+width: 150px;
+    left: 20px;
     opacity: 0;
 
+}
+/*PARTIE CREATION*/
+#publication{
+    position: absolute;
+    top: 5px;
+    right:5px;
+text-align: center;
+    height: 35px;
+  padding-top: 5px;
+  border-radius: 5px;
+  text-decoration: none;
 }

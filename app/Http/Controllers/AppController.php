@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Http\Controllers\DB;
+use App\Models\Article;
 use App\Models\Metier;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -41,9 +42,11 @@ class AppController extends Controller
     }
 
     public function profil (){
-       $metier = Metier::find(Auth::user()->id);
+       $metier = Metier::find(Auth::user()->metier_id);
+       $articles = Article::where('user_id',auth()->user()->id)->take(1)->get();
+       //dd($articles);
        //dd($metier); 
-        return view('profil', ['metier'=> $metier]);
+        return view('profil', ['metier'=> $metier, 'articles'=>$articles]);
     }
 
 

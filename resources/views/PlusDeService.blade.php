@@ -10,7 +10,7 @@
 <body>
  <div class="container-fluid">
   <div id="boutton" class="text-center mt-5">
-    <a href="{{route('accueil')}}">ù
+    <a href="{{route('accueil')}}">
   <button id="user_boutton">Retour à l'acceuil</button></a></div>
 
     <h1 style="color: #ff9900;" id="entetecategories" class="text-center mt-4 mb-5"> DECOUVREZ NOS SERVICES   </h1>

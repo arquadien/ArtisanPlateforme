@@ -91,8 +91,59 @@ class AuthController extends Controller
 
         return redirect()->back()->with('erreur', 'Parametre de connexion incorret !')->onlyInput('phone');
 
-
     }
+
+    public function update(Request $request){
+       
+        $validatedData = $request->validate([
+            'nom' => 'required|string',
+            'prenoms' => 'required|string',
+            'phone' => 'required|string',
+            'numero_whatsapp' => 'required|string',
+            'ville' => 'required|string',
+            'commune' => 'required|string',
+            'quartier' => 'required|string',
+        ]);
+
+        // Gestion de l'upload de la photo
+        
+
+        // Création d'une nouvelle instance de l'artisan avec les données validées
+        $artisan = Artisan::find(Auth::user()->id);
+
+        $artisan->nom = $validatedData['nom'];
+        $artisan->prenoms = $validatedData['prenoms'];
+        $artisan->phone = $validatedData['phone'];
+        $artisan->numero_whatsapp = $validatedData['numero_whatsapp'];
+        $artisan->ville = $validatedData['ville'];
+        $artisan->commune = $validatedData['commune'];
+        $artisan->quartier = $validatedData['quartier'];
+       
+         // Vérifier si le mot de passe est modifié
+        if ($request->has('new_password') && !empty($request->input('new_password'))) {
+            $artisan->password = bcrypt($request->input('new_password'));
+        }
+
+        // Vérifier si la photo de profil est modifiée
+        if ($request->hasFile('photo')) {
+            $photoPath = $request->file('photo')->store('photos', 'public');
+            $artisan->photo = $photoPath;
+        }
+
+        //dd($artisan);
+
+        // Sauvegarder l'utilisateur
+        $artisan->update();
+
+
+            // Sauvegarde de l'artisan
+            $artisan->update();
+        
+        
+
+        return redirect()->route('profil')->with('msg', 'Vos informations ont bien été mise à jour');
+    }
+    
 
 
 }

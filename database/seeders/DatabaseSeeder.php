@@ -156,7 +156,7 @@ class DatabaseSeeder extends Seeder
         );
 
         Metier::factory()->create([
-            'domaine' => "MArtisanat d'art et de décoration",
+            'domaine' => "Artisanat d'art et de décoration",
             'description' => "Emballez votre espace avec des œuvres d'art uniques et des pièces de décoration originales grâce à notre service d'artisanat d'art et de décoration. Des peintures abstraites aux sculptures sur bois en passant par les textiles faits à la main, nous vous proposons une sélection éclectique d'œuvres d'art créatives et inspirantes pour embellir votre environnement. Avec notre application conviviale, vous pouvez explorer une variété de créations, discuter directement avec des artistes talentueux et trouver la pièce parfaite qui complète votre style et votre vision. Faites confiance à notre équipe pour vous aider à créer un espace qui raconte votre histoire et reflète votre personnalité unique.",
             'image' => 'public/images/image12.jpg'
         ],

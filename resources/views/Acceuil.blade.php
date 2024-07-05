@@ -5,10 +5,10 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
-  <link rel="stylesheet" href="asset/CSS/bootstrap.min.css">
-  <link rel="stylesheet" href="asset/CSS/owl.carousel.min.css">
-  <link rel="stylesheet" href="asset/CSS/owl.theme.default.min.css">
-  <link rel="stylesheet" href="asset/CSS/STYLE_combinéACCEUIL.css">
+  <link rel="stylesheet" href="{{(' asset/CSS/bootstrap.min.css ')}}">
+  <link rel="stylesheet" href="{{('asset/CSS/owl.carousel.min.css')}}">
+  <link rel="stylesheet" href="{{('asset/CSS/owl.theme.default.min.css')}}">
+  <link rel="stylesheet" href="{{('asset/CSS/STYLE_combinéACCEUIL.css')}}">
   <title>Accueil</title>
 </head>
 
