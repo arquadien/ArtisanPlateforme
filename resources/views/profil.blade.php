@@ -90,7 +90,10 @@
         </ul>
     </nav>
     @if(Session::get('msg'))
-      <button class="success"><b style="color: green; text-align : center;">{{ Session::get('msg') }}</b></button>
+      <div class="alert alert-success" style="color: green; text-align : center;  font-size : 18 px;"><b>{{ Session::get('msg') }}</b></div>
+    @endif
+    @if(Session::get('msg_echec'))
+      <div class="alert alert-danger" style="color: red; text-align : center; font-size : 18 px;"><b>{{ Session::get('msg_echec') }}</b></div>
     @endif
 
     <div>
@@ -142,11 +145,11 @@
                                                 </div>
                                                 <div class="col-md-6 mt-2">
                                                     <label class="form-label" for="">Numéro de téléphone</label>
-                                                    <input type="text" name="phone" pattern="[0-9]{10}" value="{{ Auth::user()->phone}}">
+                                                    <input type="text" name="phone" pattern="[0-9]{10}" value="0{{Auth::user()->phone}}">
                                                 </div>
                                                 <div class="col-md-6 mt-2">
                                                     <label class="form-label" for="">Numéro whatsapp</label>
-                                                    <input type="text" name="numero_whatsapp" pattern="[0-9]{10}" value="{{ Auth::user()->numero_whatsapp}}">
+                                                    <input type="text" name="numero_whatsapp" pattern="[0-9]{10}" value="0{{Auth::user()->numero_whatsapp}}">
                                                 </div>
                                                 <div class="col-md-6 mt-2">
                                                     <label class="form-label" for="">Ville</label>
@@ -357,19 +360,23 @@
                         <div class="row">
                             <div  class="col-md-6 mt-4 h-50">
                             @foreach($articles as $article)
-                              <div class="card p-3 ">
-                              <h3>prix: {{$article->prix}} FCFA</h3>
-                              <p>{{$article->presentation}}</p>
-                              <img class="mb-4 " style="width: 300px;" src="storage/{{$article->photos}}" alt="">
-                              </div>
+                              @if($article->id % 2 == 1)
+                                <div class="card p-3 ">
+                                <h3>prix: {{$article->prix}} FCFA</h3>
+                                <p>{{$article->presentation}}</p>
+                                <img class="mb-4 " style="width: 300px;" src="storage/{{$article->photos}}" alt="">
+                                </div>
+                              @endif
                             @endforeach</div>
                             <div  class="col-md-6 mt-4 h-50">
                             @foreach($articles as $article)
-                              <div class="card p-3 ">
-                              <h3>prix: {{$article->prix}} FCFA</h3>
-                              <p>{{$article->presentation}}</p>
-                              <img class="mb-4 " style="width: 300px;" src="storage/{{$article->photos}}" alt="">
-                              </div>
+                              @if($article->id % 2 == 0)
+                                <div class="card p-3 ">
+                                <h3>prix: {{$article->prix}} FCFA</h3>
+                                <p>{{$article->presentation}}</p>
+                                <img class="mb-4 " style="width: 300px;" src="storage/{{$article->photos}}" alt="">
+                                </div>
+                              @endif
                             @endforeach</div>
                         </div>
                     </div>
@@ -383,44 +390,10 @@
 
 
 
-        <script src="asset/js/bootstrap.bundle.min.js"></script>
-        <script src="asset/js/jquery.min3.js"></script>
-        <script>
-            //ICOONE PROFIL DE L'ARTISANS SUR LE MENU DE NAVIGATION
-            let subMenu = document.getElementById("subMenu");
-            function toggleMenu() {
-                subMenu.classList.toggle("open-menu");
-            }
-        </script>
-
     <script src="asset/js/navbar.js"></script>
     <script src="asset/js/jquery.min3.js"></script>
     <script src="asset/js/bootstrap.bundle.min.js"></script>
-    <script src="asset/js/owl.carousel.min.js"></script>
    
-
-    <script>
-
-        $('.owl-carousel').owlCarousel({
-          loop: true,
-          margin: 10,
-          autoplay: true,
-          autoplayTimeout: 1000,
-          autoplayHoverPause: true,
-          nav: true,
-          responsive: {
-            0: {
-              items: 1
-            },
-            600: {
-              items: 3
-            },
-            1000: {
-              items: 5
-            }
-          }
-        })
-      </script>
 </body>
 
 </html>

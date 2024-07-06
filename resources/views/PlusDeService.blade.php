@@ -22,7 +22,7 @@
             <a href="{{route('infosurnosservice', $metier->id) }}">
               <div class="card ima">
                 <div class="mage">
-                  <img class="imgs" src="{{$metier->image}}" alt="">
+                  <img class="imgs" src="storage/{{$metier->image}}" alt="">
                 </div>
                 <h5>{{ $metier->domaine }}</h5>
               </div>

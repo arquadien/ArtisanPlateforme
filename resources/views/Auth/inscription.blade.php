@@ -26,14 +26,21 @@
         </div>
         <div class="col-md-6" >
             <label class="form-label" for="">Prénoms</label>
-          <input  class="form-control" type="text" name="prenoms" pattern="[a-zA-Z]+" required> </div>
+          <input  class="form-control" type="text" name="prenoms" required> 
+        </div>
         <div  class="col-md-6 motdepasse">
             <label class="form-label" for="">Mot de passe</label>
-          <input  class="form-control" type="password" name="password" required>   <i class="fa-regular fa-eye"></i></div>
-        
+          <input  class="form-control" type="password" name="password" required>  
+          <span class="toggle-password" onclick="togglePasswordVisibility('password')">
+            <i class="fas fa-eye-slash"></i>
+          </span>
+        </div>
         <div  class="col-md-6 confirmation">
           <label class="form-label" for="">Confirmation mot de passe</label>
-          <input  class="form-control" type="password" name="verification_mdp" required>   <i class="fa-regular fa-eye"></i>
+          <input  class="form-control" type="password" name="verification_mdp" required>  
+          <span class="toggle-password" onclick="togglePasswordVisibility('password')">
+            <i class="fas fa-eye-slash"></i>
+          </span>
         </div>
         
         <div  class="col-md-6">

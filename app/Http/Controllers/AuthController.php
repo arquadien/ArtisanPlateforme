@@ -12,13 +12,13 @@ use Illuminate\Support\Facades\Storage;
 
 class AuthController extends Controller
 {
-    //
-
+    // Formulaire d''enregistrement d'un nouvel artisan
     public function inscriptionForm(){
         $metiers = Metier::all();
         return view('Auth.inscription', ['metiers' => $metiers]);
     }
 
+    //Fonction  pour l'enregistrement d'un nouvel artisan
     public function enregistrement(Request $request)
     {
         // Validation des données du formulaire
@@ -56,45 +56,46 @@ class AuthController extends Controller
         $artisan->sexe = $validatedData['sexe'];
         $artisan->photo = $photoPath; // Enregistre le chemin de la photo dans la base de données
 
-        // Sauvegarde de l'artisan
+        // Sauvegarde de l'artisan dans  la base de données
         $artisan->save();
 
         // Redirection avec un message de succès (vous pouvez personnaliser selon vos besoins)
-        return redirect()->route('connexionForm')->with('success', 'Inscription réussie !');
-
+        return redirect()->route('connexionForm')->with('msg', 'Inscription réussie !');
     }
 
+    //Formulaire de connexion
     public function connexionForm(){
         return view('Auth.Connecter');
     }
 
+    // Fonction de déconnexion
     public function Déconnexion(){
         Auth::logout();
-        return redirect(route('connexionForm'));
+        return redirect(route('connexionForm'))->with('msg', 'Votre compte est à présent déconnecté !');
     }
 
+    //Fonction pour la connexion
     public function connexion(Request $request){
-        //dd($request->only(['phone', 'password']));
-
+        
+        // Règles de validation pour la connexion d'un ûtilisateur
         $credentials = $request->validate([
             'phone' => ['required'],
             'password' => ['required'],
         ]);
 
-       // dd($credentials);
-        //dd(Auth::attempt($credentials));
+        //verification des parametres et authentification de l'utilisayeur
         if (Auth::attempt($credentials)) {
             $request->session()->regenerate();;
 
-            return redirect()->intended(route('profil'));
+            return redirect()->intended(route('profil'))->with('msg', 'Vous êtes connecté à votre compte!');
         }
 
         return redirect()->back()->with('erreur', 'Parametre de connexion incorret !')->onlyInput('phone');
-
     }
 
+    //Fonction pour la mise à jour des informations de l'artisan
     public function update(Request $request){
-       
+       // Règle de validation des inputs 
         $validatedData = $request->validate([
             'nom' => 'required|string',
             'prenoms' => 'required|string',
@@ -105,12 +106,8 @@ class AuthController extends Controller
             'quartier' => 'required|string',
         ]);
 
-        // Gestion de l'upload de la photo
-        
-
-        // Création d'une nouvelle instance de l'artisan avec les données validées
+        // mise à jour de l'instance de l'artisan avec les données validées
         $artisan = Artisan::find(Auth::user()->id);
-
         $artisan->nom = $validatedData['nom'];
         $artisan->prenoms = $validatedData['prenoms'];
         $artisan->phone = $validatedData['phone'];
@@ -121,25 +118,27 @@ class AuthController extends Controller
        
          // Vérifier si le mot de passe est modifié
         if ($request->has('new_password') && !empty($request->input('new_password'))) {
-            $artisan->password = bcrypt($request->input('new_password'));
-        }
 
+            if  (!Hash::check($request->last_password, $artisan->password)) {
+                return redirect()->route('profil')
+                 ->with('msg_echec', "La mise à jour a échoué car l'ancien mot de passe saisi est incorrect.");
+            }
+        
+            if ($request->new_password != $request->confirmation_mdp) {
+                return redirect()->route('profil')
+                    ->with('msg_echec', "La mise à jour a échoué car le nouveau mot de passe saisi est différent du mot de passe pour la confirmation.");
+            }
+
+            $artisan->password = bcrypt($request->input('new_password'));
+            
+        }
         // Vérifier si la photo de profil est modifiée
         if ($request->hasFile('photo')) {
             $photoPath = $request->file('photo')->store('photos', 'public');
-            $artisan->photo = $photoPath;
+            $artisan->photo = $photoPath; // si oui il est mis à jour
         }
-
-        //dd($artisan);
-
-        // Sauvegarder l'utilisateur
+        // Sauvegarde des nouvelles informations de l'artisan
         $artisan->update();
-
-
-            // Sauvegarde de l'artisan
-            $artisan->update();
-        
-        
 
         return redirect()->route('profil')->with('msg', 'Vos informations ont bien été mise à jour');
     }

@@ -11,7 +11,6 @@ use Illuminate\Support\Facades\Auth;
 class AppController extends Controller
 {
     // ###########  fonction d'affichage des pages  ##################
-
     public function index (Request $request) {
         $metiers = Metier::take(4)->get();//afficher la page index avec 4 servive
         return view('Acceuil', ['metiers' => $metiers]);
@@ -43,13 +42,9 @@ class AppController extends Controller
 
     public function profil (){
        $metier = Metier::find(Auth::user()->metier_id);
-       $articles = Article::where('user_id',auth()->user()->id)->take(1)->get();
-       //dd($articles);
-       //dd($metier); 
+       $articles = Article::where('user_id',auth()->user()->id)->take(2)->get();
+      
         return view('profil', ['metier'=> $metier, 'articles'=>$articles]);
     }
-
-
-    //fonction pour la récupération des metiers en base de données
 
 }

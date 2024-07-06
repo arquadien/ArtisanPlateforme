@@ -6,9 +6,9 @@ function toggleMenu() {
 
 
 //REPONSIVITE DES MENU DE NAVIGATION
-const menuHamburger = document.querySelector(".fa-bars");
+/*const menuHamburger = document.querySelector(".fa-bars");
         const navLink = document.querySelector(".nav-link");
         menuHamburger.addEventListener('click', () => {
             navLink.classList.toggle('mobilemenu');
         });
- 
+ */

@@ -14,9 +14,13 @@
   
   <div class="container" id="s6_contain">
     <h2 style="text-align : center;">Se connecter</h2><hr>
-  @if(Session::get('erreur'))
-    <b style="color: red; text-align : center;">{{ Session::get('erreur') }}</b>
-  @endif
+    @if(Session::get('erreur'))
+      <b style="color: red; text-align : center;">{{ Session::get('erreur') }}</b>
+    @endif
+
+    @if(Session::get('msg'))
+      <div class="alert alert-success" style="color: green; text-align : center;  font-size : 18 px;"><b>{{ Session::get('msg') }}</b></div>
+    @endif
     
 <form class="container" action="{{route('connexion')}}" method="post">
   @csrf
