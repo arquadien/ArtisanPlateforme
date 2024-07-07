@@ -222,6 +222,16 @@ color: black;
     transition: transform 1s ease;
     margin: 5px;
 }
+
+.imgs{
+    width: 100px;
+
+}
+
+.categories h5{
+    margin-top: 10px;
+}
+
 .ima:hover {
     transform: scale(1.03);
     color: green;
@@ -229,7 +239,6 @@ color: black;
 
 .imgs{
     width: 100px;
-    border-radius: 50%;
 
 }
 #user_boutton{

@@ -22,6 +22,9 @@ $00ujuj
 Route::get('/', [AppController::class, 'index'])->name('accueil');
 
 Route::get('/formulaire_de_demande_de_service', [AppController::class, 'service'])->name('formulaire_de_service');
+Route::post('/formulaire_de_demande_de_service', [AppController::class, 'DemandeService'])->name('Demande_de_service'); 
+
+Route::get('/liste_des_artisan', [AppController::class, 'liste'])->name('listedartisans');
 
 Route::get('/abonnement', [AppController::class, 'abonnement'])->name('abonnement');
 
