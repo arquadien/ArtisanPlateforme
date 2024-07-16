@@ -119,7 +119,7 @@ class DatabaseSeeder extends Seeder
             'domaine' => 'Agroalimentaire, alimentation, restauration',
             'description' => "Découvrez une explosion de saveurs avec notre service d'agroalimentaire, d'alimentation et de restauration.
              De la ferme à la table, nous vous proposons une sélection de produits frais et locaux, ainsi que des plats préparés avec amour par des chefs talentueux. Que vous soyez à la recherche d'ingrédients de qualité pour cuisiner chez vous ou que vous souhaitiez savourer un repas délicieux sans avoir à cuisiner, notre plateforme vous offre une expérience culinaire exceptionnelle. Avec notre application conviviale, vous pouvez commander en ligne, réserver une table dans les meilleurs restaurants de la région et découvrir de nouvelles saveurs qui éveilleront vos sens.",
-            'image' => 'asset/image/'
+            'image' => 'asset/image/Agro-Restauration3.svg'
         ],
         );
 

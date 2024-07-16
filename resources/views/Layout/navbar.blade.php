@@ -10,7 +10,7 @@
               <a href="{{route('formulaire_de_service')}}">Demande de services</a>
             </li>
             <li >
-              <a href="{{route('abonnement')}}">Abonnement</a>
+              <a href="{{route('abonnement')}}">Packs publicitaires</a>
             </li>
             <li >
               <a href="{{ route('contact') }}">Contact</a>
@@ -24,9 +24,8 @@
         </div>
         @auth
           <div class="user-profil">
-           <a href="{{ route('profil') }}">
            <img src="storage\{{ Auth::user()->photo }}" alt="" class="user-img" onclick="toggleMenu()">
-           </a>
+
             <div class="menu-wrap" id="subMenu">
               <div class="sub-menu ">
                 <div class="user-2">
@@ -39,7 +38,7 @@
                   <p>Mon profil</p>
                   <span>></span>
                 </a>
-                </a>
+                
                 <a href="#" class="user-icone">
                   <i class="fa-solid fa-arrow-right-from-bracket"></i>
                   <form action="{{route('logout')}}" method="post">

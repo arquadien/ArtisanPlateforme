@@ -25,7 +25,7 @@
                         class="nav-link position-relative me-2" href="#"><i class="fa-regular fa-bell me-2"></i>
 
                             <span class="position-absolute  translate-middle badge rounded-pill bg-danger">
-                              0
+                              
                               <span class="visually-hidden">unread messages</span>
                             </span>
                          </a>
@@ -85,7 +85,7 @@
                 <a class="nav-link" href="{{ route('affichage_article')}}">Article publier</a>
             </li>
             <li class="nav-item">
-                <a class="nav-link " href="{{ route('abonnement')}}">Mon abonnements</a>
+                <a class="nav-link " href="{{ route('abonnement')}}">Pack publiciatire</a>
             </li>
         </ul>
     </nav>
@@ -201,9 +201,15 @@
                         <h1 class="mt-2">{{ Auth::user()->nom}} {{ Auth::user()->prenoms}}</h1>
 
                         <div class="mt-2 text-center ">
-                            <a id="what" href="{{ Auth::user()->numero_whatsapp}}"><i class="fa-brands fa-whatsapp"></i></a>
+                            <!-- Lien vers WhatsApp -->
+                            @if (auth()->user()->numero_whatsapp)
+                            <a id="what" href="https://api.whatsapp.com/send?phone={{ Auth::user()->numero_whatsapp}}"><i class="fa-brands fa-whatsapp"></i></a>
+                            @else
+                                <p>Numéro de téléphone non renseigné.</p>
+                            @endif
 
-                            <a id="tel" href="{{ Auth::user()->phone}}"><i class="fa-solid fa-phone"></i></a>
+                            <!-- Lien vers le téléphone -->
+                            <a id="tel" href="tel:{{ Auth::user()->phone}}"><i class="fa-solid fa-phone"></i></a>
 
 
                         </div>
@@ -240,34 +246,19 @@
                             <i class="fa-solid fa-star"></i>
                             <i class="fa-solid fa-star"></i>
                             <i class="fa-regular fa-star"></i>
-                            <span class="ms-4"><a style="text-decoration: none;"  href="">(1 avis verifier)</a></span>
+                            <span class="ms-4"><a style="text-decoration: none;"  href="">( {{ $compteur }} avis verifier)</a></span>
                         </div> 
-                        <h4>Temoignage</h4>
+
+                        <h4 class="mt-2">Temoignage</h4>
                         <div class=" col-12">
                             <div id="carouselExampleAutoplaying" class="carousel slide" data-bs-ride="carousel">
                                 <div class="carousel-inner">
                                   <div class="carousel-item active ">
-                                    <div class="box-top m-3">
-                                        <div class="username">
-                                          <strong>sophiate</strong>
-                              
-                                        </div>
-                                        <div class="etoile">
-                                          <i class="fa-solid fa-star"></i>
-                                          <i class="fa-solid fa-star"></i>
-                                          <i class="fa-solid fa-star"></i>
-                                          <i class="fa-solid fa-star"></i>
-                                          <i class="fa-regular fa-star"></i>
-                                        </div>
-                                        <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit.
-                                          Commodi nostrum praesentium nam numquam ut porro eaque provident nulla asperiores ex.</p>
-                                      </div>
-                                  </div>
                                   <div class="carousel-item">
+                                  @foreach($commentaires as $commentaire)
                                     <div class="box-top m-3">
                                         <div class="username">
-                                          <strong>sophiate</strong>
-                              
+                                          <strong>{{ $commentaire->prenoms }}</strong>
                                         </div>
                                         <div class="etoile">
                                           <i class="fa-solid fa-star"></i>
@@ -276,27 +267,10 @@
                                           <i class="fa-solid fa-star"></i>
                                           <i class="fa-regular fa-star"></i>
                                         </div>
-                                        <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit.
-                                          Commodi nostrum praesentium nam numquam ut porro eaque provident nulla asperiores ex.</p>
+                                        <p>{{ $commentaire->commantaire}}</p>
                                       </div>
                                   </div>
-                                  <div class="carousel-item">
-                                    <div class="box-top m-3">
-                                        <div class="username">
-                                          <strong>sophiate</strong>
-                              
-                                        </div>
-                                        <div class="etoile">
-                                          <i class="fa-solid fa-star"></i>
-                                          <i class="fa-solid fa-star"></i>
-                                          <i class="fa-solid fa-star"></i>
-                                          <i class="fa-solid fa-star"></i>
-                                          <i class="fa-regular fa-star"></i>
-                                        </div>
-                                        <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit.
-                                          Commodi nostrum praesentium nam numquam ut porro eaque provident nulla asperiores ex.</p>
-                                      </div>
-                                  </div>
+                                @endforeach
                                 </div>
                                
                               </div>

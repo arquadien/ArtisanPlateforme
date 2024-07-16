@@ -31,7 +31,8 @@
         </div>
          <div  class="col-md-6">
         <label class="form-label"  for="">Service</label> <br>
-       <select class="form-control" name="metier_id" id="" required>
+       <select class="form-select" name="metier_id" id="" required>
+       <option value=""></option>
           @foreach($metiers as $metier) 
             <option value="{{$metier->id}}">{{$metier->domaine}}</option>
           @endforeach
@@ -68,19 +69,17 @@
 
         <span id="s2_counter">300</span> caractere restants
       </div>
+      <input type="hidden" name="latitude" id="latitude">
+      <input type="hidden" name="longitude" id="longitude">
      <div id="boutton">
         <input class="mt-4 btn btn-outline-success btn-lg" type="submit" id="">
-        <a href="Acceuil.html" class="btn btn-outline fw-bold mt-4 btn-lg">Retour</a>
+        <a href="{{ route('accueil') }}" class="btn btn-outline fw-bold mt-4 btn-lg">Retour</a>
     </div>
      </div>
       </form>
     </div></div>
 
   </div>
-
-
-
-
 
     <script src="asset/js/bootstrap.bundle.min.js"></script>
     <script>
@@ -89,7 +88,54 @@
         let textlong= document.getElementById("message").value.length;
         let bien = maxlength-textlong;
         document.getElementById("counter").textContent = bien;
-      }
+      }    
     </script>
+
+<script>
+  document.addEventListener('DOMContentLoaded', function() {
+    const position = document.querySelector('#coordonnees');
+
+    function demanderGeolocalisation() {
+      if (navigator.geolocation) {
+        // Demander la position actuelle de l'utilisateur
+        navigator.geolocation.getCurrentPosition(showPosition, showError);
+      } else {
+        alert("La géolocalisation n'est pas supportée par ce navigateur.");
+      }
+    }
+
+    function showPosition(position) {
+      // Mettre à jour les champs de latitude et longitude avec les coordonnées récupérées
+      document.getElementById('latitude').value = position.coords.latitude;
+      document.getElementById('longitude').value = position.coords.longitude;
+      alert("Coordonnées géographiques récupérées avec succès.");
+    }
+
+    function showError(error) {
+      // Gérer les différentes erreurs de géolocalisation
+      switch(error.code) {
+        case error.PERMISSION_DENIED:
+          alert("L'utilisateur a refusé la demande de géolocalisation.");
+          break;
+        case error.POSITION_UNAVAILABLE:
+          alert("Les informations de géolocalisation ne sont pas disponibles.");
+          break;
+        case error.TIMEOUT:
+          alert("La demande de géolocalisation a expiré.");
+          break;
+        case error.UNKNOWN_ERROR:
+          alert("Une erreur inconnue est survenue lors de la géolocalisation.");
+          break;
+      }
+    }
+
+    // Écouter le chargement de la page et demander la géolocalisation
+    demanderGeolocalisation();
+
+    // Écouter le clic sur l'élément #coordonnees pour redemander la géolocalisation si nécessaire
+    position.addEventListener('click', demanderGeolocalisation);
+  });
+</script>
+
 </body>
 </html>

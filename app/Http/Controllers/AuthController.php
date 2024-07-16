@@ -20,7 +20,7 @@ class AuthController extends Controller
 
     //Fonction  pour l'enregistrement d'un nouvel artisan
     public function enregistrement(Request $request)
-    {
+    {     
         // Validation des données du formulaire
         $validatedData = $request->validate([
             'nom' => 'required|string',
@@ -35,6 +35,8 @@ class AuthController extends Controller
             'commune' => 'required|string',
             'quartier' => 'required|string',
             'sexe' => 'required|in:homme,femme',
+            'latitude'=>'required',
+            'longitude'=>'required',
             'photo' => 'required|image|mimes:jpeg,png,jpg,gif|max:2048', //  validation pour l'upload de photo
         ]);
 
@@ -54,6 +56,8 @@ class AuthController extends Controller
         $artisan->commune = $validatedData['commune'];
         $artisan->quartier = $validatedData['quartier'];
         $artisan->sexe = $validatedData['sexe'];
+        $artisan->longitude = $validatedData['longitude'];
+        $artisan->latitude = $validatedData['latitude'];
         $artisan->photo = $photoPath; // Enregistre le chemin de la photo dans la base de données
 
         // Sauvegarde de l'artisan dans  la base de données

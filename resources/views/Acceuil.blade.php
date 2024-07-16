@@ -13,11 +13,81 @@
 </head>
 
 <body>
+  </div class="img-container">
+  
   <div>
-    <img class="w-100" src='{{asset("asset/image/logo1")}}' alt='' />
+      <h1 class="h1acceuil fw-bold">ARTISANEXPRESS</h1>
+      <form action="{{route('recherche')}}" method="post">
+        @csrf
+        <select class="form-control acceuil w-25"  aria-label="Default select example" name="metier" required>
+        <option value="">rechercher un service</option>
+          @foreach($searchs as $search)
+              <option value="{{$search->id}}">{{$search->domaine}}</option>
+          @endforeach
+        </select>
+        <input class=" btn btn-outline-success" value="recherche" type="submit" id="btnacceuil">
+      </form>
+     
+    </div>
+    <img id="imageaceuil"  class="w-100 " src="{{asset('asset/image/acceuilImage.jpg')}}" alt='' />
   </div>
   <!---DEBUT NAVBAR-->
-  @extends('Layout.navbar')
+  <nav class="navigation fixed-top">
+    <a class="logo" href="#">ArtisanExpress</a>
+    <div class="nav-link">
+        <ul>
+            <li>
+              <a href="{{ route('accueil') }}">Acceuil</a>
+            </li>
+            <li >
+              <a href="{{route('formulaire_de_service')}}">Demande de services</a>
+            </li>
+            <li >
+              <a href="{{route('abonnement')}}">Packs publicitaires</a>
+            </li>
+            <li >
+              <a href="{{ route('contact') }}">Contact</a>
+            </li>
+
+          </ul>
+          @guest
+          <button  id="btn1" class="btn"> <a href="{{route('enregistrementForm')}}">S'inscrire</a></button>
+          <button id="btn2" class="btn "> <a href="{{route('connexionForm')}}">Se connecter</a> </button>
+          @endguest
+        </div>
+        @auth
+          <div class="user-profil">
+           <img src="storage\{{ Auth::user()->photo }}" alt="" class="user-img" onclick="toggleMenu()">
+
+            <div class="menu-wrap" id="subMenu">
+              <div class="sub-menu ">
+                <div class="user-2">
+                  <img src="storage\{{ Auth::user()->photo }}" class="user-imgs" alt="">
+                  <h3>{{ Auth::user()->nom }}</h3>
+                </div>
+                <hr>
+                <a href="{{ route('profil') }}" class="user-icone">
+                  <i class="fa-solid fa-user"></i>
+                  <p>Mon profil</p>
+                  <span>></span>
+                </a>
+                
+                <a href="#" class="user-icone">
+                  <i class="fa-solid fa-arrow-right-from-bracket"></i>
+                  <form action="{{route('logout')}}" method="post">
+                    @method("delete")
+                    @csrf
+                    <button style="border: none; background: none;">se déconnecter</button>
+                  </form>
+                  <span>></span>
+                </a>
+              </div>
+            </div>
+          </div>
+        @endauth
+
+    <div class="iconebars"> <i class="fa-solid fa-bars"></i></div>
+  </nav>
   <!--FIN NAVBAR -->
 
   <!---DEBUT DE CATEGORIE DES SERVICES-->
@@ -50,10 +120,9 @@
 
    <div class="container mt-3 p-5">
     <h2 class="text-center" style="color: #ff9900;">PRESENTATION DE LA PLATEFORME</h2>
-    <div class="row mt-3" id="box">
-      <h3 class="mb-3"> Pourquoi choisir ArtisanExpress ?</h3>
+    <div class="row  mt-3" id="box" >
+      <h3 class=" mb-3"> Pourquoi choisir ArtisanExpress ?</h3>
       <div class="box2 col-md-5">
-
         <p> <strong>Sélection Rigoureuse d'Artisans :</strong>Nous travaillons uniquement avec des artisans qualifiés et
           expérimentés, pour vous garantir un service de qualité.</p>
         <p> <strong>Facilité de Réservation en Ligne : </strong>Réservez vos services artisanaux en toute simplicité, à
@@ -65,9 +134,13 @@
 
 
       </div>
-      <div class="box1 col-md-7"> <img id="plateformevideo" src='https://placehold.it/600x300' alt='' /></div>
-
-    </div>
+      <div class="box1 col-md-7"> 
+      <video id="plateformevideo" controls>
+      <source src="{{asset('asset/video/presentation.mp4')}}" type="video/mp4">
+      Your browser does not support the video tag.
+      </video>
+     
+</div>
   </div>
   <!---FIN PRESENTATION de la PLATE FORME-->
 
@@ -124,20 +197,20 @@
 
 
 
-  <!---DEBUT FAQ foire aux questions-->
-  <div class="container">
+   <!---DEBUT FAQ foire aux questions-->
+   <div class="container w-80">
     <h2 style="color: #ff9900;" class="text-center mt-5">FOIRE AUX QUESTIONS</h2>
     <div class="accordion accordion-flush mt-4" id="accordionFlushExample">
       <div class="accordion-item border">
         <h2 class="accordion-header">
           <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
             data-bs-target="#flush-collapseOne" aria-expanded="false" aria-controls="flush-collapseOne">
-            Accordion Item #1
+            Qu'est-ce que Artisanat Express ?
           </button>
         </h2>
         <div id="flush-collapseOne" class="accordion-collapse collapse" data-bs-parent="#accordionFlushExample">
-          <div class="accordion-body">Placeholder content for this accordion, which is intended to demonstrate the
-            <code>.accordion-flush</code> class. This is the first item's accordion body.
+          <div class="accordion-body">Artisanat Express est une plateforme en ligne qui connecte des artisans locaux
+             avec des clients cherchant à bénéficier de leurs services.
           </div>
         </div>
       </div>
@@ -145,13 +218,15 @@
         <h2 class="accordion-header">
           <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
             data-bs-target="#flush-collapseTwo" aria-expanded="false" aria-controls="flush-collapseTwo">
-            Accordion Item #2
+            Comment fonctionne Artisanat Express ?
           </button>
         </h2>
         <div id="flush-collapseTwo" class="accordion-collapse collapse" data-bs-parent="#accordionFlushExample">
-          <div class="accordion-body">Placeholder content for this accordion, which is intended to demonstrate the
-            <code>.accordion-flush</code> class. This is the second item's accordion body. Let's imagine this being
-            filled with some actual content.
+          <div class="accordion-body">L'application permet aux artisans de s'inscrire, de créer un profil, de publie
+             des photos de leurs créations, de définir leurs prix et de recevoir des commandes directement via la
+              plateforme. Les clients peuvent demander un service et recevoir une liste d'artisans à proximité pouvant 
+              répondre à leurs besoins. Ils peuvent parcourir les profils,
+             communiquer avec les artisans et choisir celui qui leur convient.
           </div>
         </div>
       </div>
@@ -159,18 +234,46 @@
         <h2 class="accordion-header">
           <button class="accordion-button collapsed " type="button" data-bs-toggle="collapse"
             data-bs-target="#flush-collapseThree" aria-expanded="false" aria-controls="flush-collapseThree">
-            Accordion Item #3
+            Quels sont vos différents domaines d'intervention sur Artisanat Express ?
           </button>
         </h2>
         <div id="flush-collapseThree" class="accordion-collapse collapse" data-bs-parent="#accordionFlushExample">
-          <div class="accordion-body">Placeholder content for this accordion, which is intended to demonstrate the
-            <code>.accordion-flush</code> class. This is the third item's accordion body. Nothing more exciting
-            happening here in terms of content, but just filling up the space to make it look, at least at first glance,
-            a bit more representative of how this would look in a real-world application.
+          <div class="accordion-body">Nous intervenons dans plus de 18 métiers, tels que menuisier, le transport,  
+            la maçonnerie, la mécanique, la bijouterie etc.
           </div>
         </div>
       </div>
+      <div class="accordion-item border ">
+        <h2 class="accordion-header">
+          <button class="accordion-button collapsed " type="button" data-bs-toggle="collapse"
+            data-bs-target="#flush-collapseThree" aria-expanded="false" aria-controls="flush-collapseThree">
+            Comment puis-je demander un service sur Artisanat Express ?
+          </button>
+        </h2>
+        <div id="flush-collapseThree" class="accordion-collapse collapse" data-bs-parent="#accordionFlushExample">
+          <div class="accordion-body">Vous allez sur la section "Demande de service", remplir le formulaire en fonction 
+            de vos besoins et soumettre votre demande. 
+            Une liste d'artisans vous sera retournée et vous pourrez choisir celui qui vous convient.
+          </div>
+        </div>
+      </div>
+      <div class="accordion-item border ">
+        <h2 class="accordion-header">
+          <button class="accordion-button collapsed " type="button" data-bs-toggle="collapse"
+            data-bs-target="#flush-collapseThree" aria-expanded="false" aria-controls="flush-collapseThree">
+            Artisanat Express est-il sécurisé ?
+          </button>
+        </h2>
+        <div id="flush-collapseThree" class="accordion-collapse collapse" data-bs-parent="#accordionFlushExample">
+          <div class="accordion-body">Oui, la sécurité des données est une priorité pour nous. Nous protégeons 
+            les informations personnelles conformément aux normes de sécurité en vigueur.
+          </div>
+        </div>
+      </div>
+      </div>
     </div>
+    <h3 class=" mt-3  text-center"> <a class="btn btn-outline-success fw-bold" href="{{route('plusdaide')}} "> VOIR PLUS
+    ...</a></h3>
   </div>
 
   <!---FIN FAQ foire aux questions-->
@@ -181,9 +284,10 @@
   <div id="avis" class="mt-3">
     <div class="owl-carousel">
       <div>
+        @foreach($commentaires as $commentaire)
         <div class="box-top">
           <div class="username">
-            <strong>sophiate</strong>
+            <strong>{{ $commentaire->prenoms}}</strong>
 
           </div>
           <div class="etoile">
@@ -193,77 +297,10 @@
             <i class="fa-solid fa-star"></i>
             <i class="fa-regular fa-star"></i>
           </div>
-          <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit.
-            Commodi nostrum praesentium nam numquam ut porro eaque provident nulla asperiores ex.</p>
+          <p>{{ $commentaire->commantaire}}</p>
         </div>
       </div>
-      <div>
-        <div class="box-top">
-          <div class="username">
-            <strong>sophiate</strong>
-
-          </div>
-          <div class="etoile">
-            <i class="fa-solid fa-star"></i>
-            <i class="fa-solid fa-star"></i>
-            <i class="fa-solid fa-star"></i>
-            <i class="fa-solid fa-star"></i>
-            <i class="fa-regular fa-star"></i>
-          </div>
-          <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit.
-            Commodi nostrum praesentium nam numquam ut porro eaque provident nulla asperiores ex.</p>
-        </div>
-      </div>
-      <div>
-        <div class="box-top">
-          <div class="username">
-            <strong>sophiate</strong>
-
-          </div>
-          <div class="etoile">
-            <i class="fa-solid fa-star"></i>
-            <i class="fa-solid fa-star"></i>
-            <i class="fa-solid fa-star"></i>
-            <i class="fa-solid fa-star"></i>
-            <i class="fa-regular fa-star"></i>
-          </div>
-          <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit.
-            Commodi nostrum praesentium nam numquam ut porro eaque provident nulla asperiores ex.</p>
-        </div>
-      </div>
-      <div>
-        <div class="box-top">
-          <div class="username">
-            <strong>sophiate</strong>
-
-          </div>
-          <div class="etoile">
-            <i class="fa-solid fa-star"></i>
-            <i class="fa-solid fa-star"></i>
-            <i class="fa-solid fa-star"></i>
-            <i class="fa-solid fa-star"></i>
-            <i class="fa-regular fa-star"></i>
-          </div>
-          <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit.
-            Commodi nostrum praesentium nam numquam ut porro eaque provident nulla asperiores ex.</p>
-        </div>
-      </div>
-      <div>
-        <div class="box-top">
-          <div class="username">
-            <strong>sophiate</strong>
-
-          </div>
-          <div class="etoile">
-            <i class="fa-solid fa-star"></i>
-            <i class="fa-solid fa-star"></i>
-            <i class="fa-solid fa-star"></i>
-            <i class="fa-solid fa-star"></i>
-            <i class="fa-regular fa-star"></i>
-          </div>
-          <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit.
-            Commodi nostrum praesentium nam numquam ut porro eaque provident nulla asperiores ex.</p>
-        </div>
+      @endforeach
       </div>
 
     </div>
@@ -293,9 +330,9 @@
   <!--- FIN DE FOOTER-->
 
 
-  <script src="asset/js/navbar.js"></script>
-    <script src="asset/js/jquery.min3.js"></script>
-    <script src="asset/js/bootstrap.bundle.min.js"></script>
+  
+    <script src="{{asset('asset/js/jquery.min3.js')}}"></script>
+    <script src="{{asset('asset/js/bootstrap.bundle.min.js')}}"></script>
     <script src="asset/js/owl.carousel.min.js"></script>
   <script src="asset/js/owl.carousel.min.js"></script>
   <script>
@@ -319,6 +356,26 @@
         }
       }
     })
+  </script>
+
+
+<script>
+    let menuWrap = document.querySelector('.menu-wrap');
+function toggleMenu() {
+    menuWrap.classList.toggle('open-menu');
+}
+
+  $(document).ready(function() {
+    const menuHamburger = document.querySelector(".fa-bars");
+    const navLink = document.querySelector(".nav-link");
+
+  if (menuHamburger && navLink) {
+    menuHamburger.addEventListener('click', function() {
+      navLink.classList.toggle('mobilemenu');
+    });
+  }
+});
+
   </script>
 </body>
 

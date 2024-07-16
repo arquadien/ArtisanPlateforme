@@ -32,14 +32,14 @@
             <label class="form-label" for="">Mot de passe</label>
           <input  class="form-control" type="password" name="password" required>  
           <span class="toggle-password" onclick="togglePasswordVisibility('password')">
-            <i class="fas fa-eye-slash"></i>
+            <i class="fa-regular fa-eye"></i>
           </span>
         </div>
         <div  class="col-md-6 confirmation">
           <label class="form-label" for="">Confirmation mot de passe</label>
           <input  class="form-control" type="password" name="verification_mdp" required>  
           <span class="toggle-password" onclick="togglePasswordVisibility('password')">
-            <i class="fas fa-eye-slash"></i>
+            <i class="fa-regular fa-eye"></i>
           </span>
         </div>
         
@@ -51,7 +51,7 @@
           <input  class="form-control" type="tel" name="numero_whatsapp" pattern="[0-9]+" required> </div>
           <div  class="col-md-6">
             <label class="form-label" for="">Metier</label>
-            <select class="form-control" name="metier_id" id="" required> 
+            <select class="form-select" name="metier_id" id="" required> 
               <option value=""></option>
               @foreach($metiers as $metier)
                 <option value="{{$metier->id}}">{{$metier->domaine}}</option>
@@ -91,6 +91,11 @@
           <label class="label" for="">selectionnez une photo : </label> 
           <input class="form-control" type="file" name="photo" accept="image/*" required>
       </div>
+      <div class=" mt-2">
+          <div class="btn btn-outline-danger fw-bold" id="coordonnees" style="cursor: pointer;">Obtenir ma position</div>
+      </div>
+      <input type="hidden" name="latitude" id="latitude">
+      <input type="hidden" name="longitude" id="longitude">
       <div  class="col-md-6 ">
         <input class="form-control s5_input" type="submit"  value="Soumettre">
       </div>
@@ -105,5 +110,46 @@
 
     <script src="asset/js/EYEsurmotdepasse.js"></script>
     <script src="asset/js/bootstrap.bundle.min.js"></script>
+  
+<script>
+  document.addEventListener('DOMContentLoaded', function() {
+    const position = document.querySelector('#coordonnees');
+
+    position.addEventListener('click', function() {
+      if (navigator.geolocation) {
+        navigator.geolocation.getCurrentPosition(showPosition, showError);
+      } else {
+        alert("La géolocalisation n'est pas supportée par ce navigateur.");
+      }
+    });
+    function alertUserLocation(){
+        alert("Vous pouvez vous inscrire uniquement lorsque vous êtes sur votre lieu de travail afin de récupérer votre position géographique");
+      }
+      alertUserLocation();
+
+    function showPosition(position) {
+      document.getElementById('latitude').value = position.coords.latitude;
+      document.getElementById('longitude').value = position.coords.longitude;
+      alert("Coordonnées géographiques récupérées avec succès.");
+    }
+
+    function showError(error) {
+      switch(error.code) {
+        case error.PERMISSION_DENIED:
+          alert("L'utilisateur a refusé la demande de géolocalisation.");
+          break;
+        case error.POSITION_UNAVAILABLE:
+          alert("Les informations de géolocalisation ne sont pas disponibles.");
+          break;
+        case error.TIMEOUT:
+          alert("La demande de géolocalisation a expiré.");
+          break;
+        case error.UNKNOWN_ERROR:
+          alert("Une erreur inconnue est survenue lors de la géolocalisation.");
+          break;
+      }
+    }
+  });
+</script>
 </body>
 </html>

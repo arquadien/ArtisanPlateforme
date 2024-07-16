@@ -1,23 +1,21 @@
 <?php
 
 namespace App\Http\Controllers;
-
-use App\Models\Commentaire;
-use App\Http\Requests\StoreCommentaireRequest;
-use App\Http\Requests\UpdateCommentaireRequest;
+use App\Models\Commantaire;
+use Illuminate\Http\Request;
 
 class CommentaireController extends Controller
 {
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \App\Http\Requests\StoreCommentaireRequest  $request
-     * @return \Illuminate\Http\Response
-     */
-    public function store(StoreCommentaireRequest $request)
-    {
-        $input = $request->all();
-        Commentaire::create($input);
+    public function avis(Request $request){
+        $commantaire = new Commantaire();
+        $commantaire ->artisan_id = $request->artisan_id ;
+        $commantaire ->note = $request->note;
+        $commantaire ->prenoms = $request->prenoms;
+        $commantaire ->commantaire = $request->commentaire;
+        $commantaire ->appreciation = $request->appreciation;
+        $commantaire->save();
+
         return back();
+
     }
 }

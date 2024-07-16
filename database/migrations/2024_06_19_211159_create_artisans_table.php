@@ -26,6 +26,8 @@ return new class extends Migration
         $table->string('quartier');
         $table->string('sexe');
         $table->string('photo')->nullable();
+        $table->decimal('latitude', 10, 8);
+        $table->decimal('longitude', 11, 8);
         $table->rememberToken();
         $table->timestamps();
 
