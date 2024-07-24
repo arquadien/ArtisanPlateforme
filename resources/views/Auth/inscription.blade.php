@@ -13,10 +13,21 @@
  
     <div class="">
           <h1 style="color:  green;" class="text-center">INSCRIPTION ARTISANT</h1></div>
-          @if(Session::get('error'))
-            <b style="color: red; text-align : center;">{{ Session::get('error') }}</b>
-          @endif
-    
+          @if ($errors->any())
+    <div class="alert alert-danger">
+        <ul>
+            @foreach ($errors->all() as $error)
+                <li>{{ $error }}</li>
+            @endforeach
+        </ul>
+    </div>
+@endif
+
+@if (session('error'))
+    <div class="alert alert-danger">
+        {{ session('error') }}
+    </div>
+@endif
     <form class=" container mt-2" method="post" action="{{route ('enregistrement')}}" enctype="multipart/form-data">
     @csrf
       <div class="row">

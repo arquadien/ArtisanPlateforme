@@ -98,6 +98,8 @@ class AppController extends Controller
             $demande->description = $data['description'];
             $demande->sexe = $data['sexe'];
             $demande->save();
+
+            //dd($data['metier_id']);
     
             // Récupération des coordonnées géographiques de l'utilisateur
             $userLatitude = $data['latitude'];
@@ -117,7 +119,6 @@ class AppController extends Controller
                 ) AS distance
             ', [$userLatitude, $userLongitude, $userLatitude])
             ->where('metier_id', $data['metier_id']) 
-            ->having('distance', '<=', $rayon)
             ->orderBy('distance')
             ->get();
 
@@ -139,6 +140,18 @@ class AppController extends Controller
         
         return view('pagedaide');
     }
+
+    public function telechargement(){
+        $guide= public_path('asset/Fichier/Guide.pdf');
+
+        if (file_exists($guide)) {
+            return response()->download($guide);
+        }else{
+            abort(404, "le fichier n'existe pas");
+        }
+        
+    }
+
 
 
     public function contact (){

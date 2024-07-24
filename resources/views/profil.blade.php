@@ -43,11 +43,10 @@
                     </div>
 
                 </li>
-                <img src="storage\{{ Auth::user()->photo }}"
+                <img src="{{ asset('storage/' . Auth::user()->photo) }}"
                     alt="" class="user-img" onclick="toggleMenu()">
-
                 <div class="menu-wrap" id="subMenu">
-                    <div class="sub-menu ">
+                    <div class="sub-menu">
                         <div class="user-2">
                             <img src="storage\{{ Auth::user()->photo }}"
                                 class="user-imgs" alt="">

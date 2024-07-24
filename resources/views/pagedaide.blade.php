@@ -206,7 +206,7 @@
     <div class="mb-3">
       <h1>Télécharger le guide</h1>
       <p>Cliquer sur le lien ci-dessous pour Télécharger le fichier</p>
-      <a class="btn btn-outline-success" href="" download="guides d'utilisation">Télécharger le fichier PDF</a>
+      <a class="btn btn-outline-success" href="{{ route('guide.telechagement') }}" >Télécharger le fichier PDF</a>
     </div>
   </div>
 

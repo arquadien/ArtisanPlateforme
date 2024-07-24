@@ -18,15 +18,14 @@
             <li><a style="color: white;" href="{{route('formulaire_de_service')}}">Demande de services</a></li>
             <li><a style="color: white;" href="{{route('abonnement')}}">Packs publicitaires</a></li>
             <li><a style="color: white;" href="{{ route('contact') }}">Contact</a></li>
-            <li><a style="color: white;" href="">FAQ/Guides</a></li>
+            <li><a style="color: white;" href="{{route('plusdaide')}}">FAQ/Guides</a></li>
           </ul>
         </div>
-
         <div class="col-lg-4 col-md-4  col-10">
           <h4 class="">Coordonnées de contact</h4>
           <ul></ul>
           <li> Adresse e-mail :
-            <a href=""> <br> artisanexpress41@gmail.com</a>
+            <a href="mailto:artisanexpress41@gmail.com"> <br> artisanexpress41@gmail.com</a>
           </li>
           <li> Téléphone : <a href="">+225 01 02 43 42 87</a></li>
           <li>Adresse : <a href="">Cocody 2 plateaux</a></li>

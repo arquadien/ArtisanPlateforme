@@ -31,6 +31,7 @@ Route::get('/liste_des_artisan', [AppController::class, 'liste'])->name('listeda
 
 Route::get('/abonnement', [AppController::class, 'abonnement'])->name('abonnement');
 Route::get('/foire_au_question', [AppController::class, 'aide'])->name('plusdaide');
+Route::get('/aide/telechargement/guide', [AppController::class, 'telechargement'])->name('guide.telechagement');
 
 Route::get('/contact', [AppController::class, 'contact'])->name('contact');
 
