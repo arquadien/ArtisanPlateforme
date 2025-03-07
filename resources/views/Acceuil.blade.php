@@ -60,7 +60,7 @@
             <div class="menu-wrap" id="subMenu">
               <div class="sub-menu ">
                 <div class="user-2">
-                  <img src="storage\{{ Auth::user()->photo }}" class="user-imgs" alt="">
+                  <img src="./storage/{{ Auth::user()->photo }}" class="user-imgs" alt="">
                   <h3>{{ Auth::user()->nom }}</h3>
                 </div>
                 <hr>
@@ -99,7 +99,7 @@
           <a href="{{route('infosurnosservice', $metier->id)}}">
             <div class="card ima">
               <div class="mage">
-                <img class="imgs" src="storage/{{$metier->image}}" alt="">
+                <img class="imgs" src="./storage/{{$metier->image}}" alt="">
               </div>
               <h5>{{$metier->domaine}}</h5>
             </div>
