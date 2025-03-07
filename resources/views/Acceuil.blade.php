@@ -67,7 +67,7 @@
                 <a href="{{ route('profil') }}" class="user-icone">
                   <i class="fa-solid fa-user"></i>
                   <p>Mon profil</p>
-                  <span>></span>
+                  
                 </a>
                 
                 <a href="#" class="user-icone">
@@ -77,7 +77,7 @@
                     @csrf
                     <button style="border: none; background: none;">se déconnecter</button>
                   </form>
-                  <span>></span>
+               
                 </a>
               </div>
             </div>
@@ -281,19 +281,23 @@
   <h2 style="color: #ff9900;" class="text-center  mt-5">TEMOIGNAGE CLIENT</h2>
   <div id="avis" class="mt-3">
     <div class="owl-carousel">
-      <div>
+      
         @foreach($commentaires as $commentaire)
+        <div class="item">
         <div class="box-top">
           <div class="username">
             <strong>{{ $commentaire->prenoms}}</strong>
 
           </div>
           <div class="etoile">
-            <i class="fa-solid fa-star"></i>
-            <i class="fa-solid fa-star"></i>
-            <i class="fa-solid fa-star"></i>
-            <i class="fa-solid fa-star"></i>
-            <i class="fa-regular fa-star"></i>
+            
+          @for ($i = 1; $i <= 5; $i++)
+            @if ($i <= $commentaire->note)
+              <i class="fa-solid fa-star"></i> <!-- Étoile pleine -->
+            @else
+              <i class="fa-regular fa-star"></i> <!-- Étoile vide -->
+            @endif
+          @endfor
           </div>
           <p>{{ $commentaire->commantaire}}</p>
         </div>
@@ -306,14 +310,6 @@
   </div>
 
 
-
-
-
-
-  <!--<div class="mt-4 col-12 text-center">
-    <a href="temoignage.html"><i class="fa-solid fa-plus"></i> DEPOSER LE VOTRE</a>
-    <a class="mx-3" href="#"> TOUS LES TEMOIGNAGES<i class="fa-solid fa-arrow-right"></i></a>
-  </div>-->
 
   <!---FIN DE TEMOIGNAGES-->
 
@@ -332,32 +328,32 @@
     <script src="{{asset('asset/js/jquery.min3.js')}}"></script>
     <script src="{{asset('asset/js/bootstrap.bundle.min.js')}}"></script>
     <script src="asset/js/owl.carousel.min.js"></script>
-  <script src="asset/js/owl.carousel.min.js"></script>
+    <script src="asset/js/owl.carousel.min.js"></script>
+ 
   <script>
-
-    $('.owl-carousel').owlCarousel({
-      loop: true,
-      margin: 10,
-      autoplay: true,
-      autoplayTimeout: 1000,
-      autoplayHoverPause: true,
-      nav: true,
-      responsive: {
-        0: {
-          items: 1
-        },
-        600: {
-          items: 3
-        },
-        1000: {
-          items: 5
-        }
+   $(document).ready(function(){
+  $('.owl-carousel').owlCarousel({
+    loop: true,
+    margin: 10,
+    autoplay: true,
+    autoplayTimeout: 3000, // Délai plus long pour une meilleure expérience utilisateur
+    autoplayHoverPause: true,
+    nav: true,
+    responsive: {
+      0: {
+        items: 1
+      },
+      600: {
+        items: 3
+      },
+      1000: {
+        items: 5
       }
-    })
-  </script>
+    }
+  });
+});
 
 
-<script>
     let menuWrap = document.querySelector('.menu-wrap');
 function toggleMenu() {
     menuWrap.classList.toggle('open-menu');

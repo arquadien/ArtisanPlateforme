@@ -7,6 +7,7 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
     <link rel="stylesheet" href="{{ asset('asset/CSS/bootstrap.min.css') }}">
     <link rel="stylesheet" href="{{ asset('asset/CSS/styleprofilcombine_.css') }}">
+    <link rel="stylesheet" href="{{ asset('asset/CSS/temoignage.css') }}">
     <title>Profil artisan</title>
 </head>
 
@@ -17,7 +18,7 @@
         <nav class="container">
             <ul class="nav justify-content-end">
                 <li class="nav-item">
-                    <a class="nav-link active" aria-current="page" href="{{ route('accueil') }}"><u>Retour à l'acceuil </u> </a>
+                    <a class="nav-link active" aria-current="page" href="{{ route('accueil') }}"><u>Retour à liste </u> </a>
                 </li>
               </div>
     <!--FIN NAV-->
@@ -45,17 +46,22 @@
                 <div class="col-lg-8 mt-3 ">
 
                     <div class="partieprofil2 card container">
-                        <h4>Service proposée</h4>
+                        <h4>{{$metier->domaine}}</h4>
                         <p class="m-3">
                         {{ $metier->description}}
                         </p>
                     </div>
                     <div class="card mt-3 container partieprofil2">
                         <h4>Lieu du travail</h4>
+                        <div>
+                        <iframe src="https://www.google.com/maps/embed?pb=!1m10!1m8!1m3!1d127119.26222333536!2d-4.0645722!3d5.343924!3m2!1i1024!2i768!4f13.1!5e0!3m2!1sfr!2sci!4v1722279471962!5m2!1sfr!2sci"
+                          width="560" height="278" style="border:0; width: 100%;" 
+                           allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+                        </div>
                         <div class="m-3">
-                            <p>{{ $artisan->ville}}</p>
-                            <p>{{ $artisan->commune}}</p>
-                            <p>{{ $artisan->quartier}}</p>
+                            <p> <b>Ville : </b>  {{ $artisan->ville}}</p>
+                            <p> <b>Commune : </b>{{ $artisan->commune}}</p>
+                            <p><b>Quartier : </b>{{ $artisan->quartier}}</p>
                         </div>
                     </div>
                     <div class="card mt-3 container partieprofil2">
@@ -88,13 +94,13 @@
                <div id="etoile">
                   <h4 style="margin-bottom: -10px;">Sélectionner les etoiles pour evaluer le service</h4><hr>
                   <div class="star-etoile" >
-                    <input  type="radio" name="note" value="5" id="rate-5">
+                    <input  type="radio" name="note" value="1" id="rate-5">
                     <label for="rate-5" class="fas fa-star"></label>
-                    <input  type="radio" name="note" value="5" id="rate-4">
+                    <input  type="radio" name="note" value="2" id="rate-4">
                     <label for="rate-4" class="fas fa-star"></label>
-                    <input  type="radio" name="note" value="5" id="rate-3">
+                    <input  type="radio" name="note" value="3" id="rate-3">
                     <label for="rate-3" class="fas fa-star"></label>
-                    <input  type="radio" name="note" value="5" id="rate-2">
+                    <input  type="radio" name="note" value="4" id="rate-2">
                     <label for="rate-2" class="fas fa-star"></label>
                     <input  type="radio" name="note" value="5" id="rate-1">
                     <label for="rate-1" class="fas fa-star"></label>
@@ -106,11 +112,11 @@
           <div>
           <h5 style="margin-top: 40px;">LAISSEZ UN COMMENTAIRE</h5>
           <hr style="margin-bottom: -5px;"></div>
-          <div id="form" class="col-md-6">
+          <div id="form" class="col-md-12">
             <label class="form-label" for="">Titre du commentaire</label> <br>
-            <input type="text" name="appreciation" id="" placeholder="j'aime ça/j'aime pas">
+            <input type="text" name="appreciation" id="" placeholder="j'aime ça/j'aime pas" required>
           </div>
-          <div  id="form" class="col-md-6">
+          <div  id="form" class="col-md-12">
             <label class="form-label" for="">Prenom</label> <br>
             <input type="text" name="prenoms" placeholder="votre prenom" required>
           </div>
@@ -131,37 +137,33 @@
   </div>
    </div>
                         <h4 class="mt-2">Temoignage</h4>
-                        <div class=" col-12">
-                            <div id="carouselExampleAutoplaying" class="carousel slide" data-bs-ride="carousel">
-                                <div class="carousel-inner">
-                                  <div class="carousel-item active ">
-                                  @foreach($commentaires as $commentaire)
-                                        <div class="username">
-                                          <strong>{{ $commentaire->prenoms }}</strong>
-                              
-                                        </div>
-                                        <div class="etoile">
-                                          <i class="fa-solid fa-star"></i>
-                                          <i class="fa-solid fa-star"></i>
-                                          <i class="fa-solid fa-star"></i>
-                                          <i class="fa-solid fa-star"></i>
-                                          <i class="fa-regular fa-star"></i>
-                                        </div>
-                                        <p>{{ $commentaire->commantaire}}</p>
-                                      </div>
-                                  </div>
-                                  @endforeach
-                                </div>
-                               
-                              </div>
-                      
-                        </div>
-                    </div>
+                        <div class="col-12 container mt-3">
+  <div id="carouselExampleAutoplaying" class="carousel slide" data-bs-ride="carousel">
+    <div class="carousel-inner">
+      @foreach($commentaires as $index => $commentaire)
+        <div class="carousel-item {{ $index === 0 ? 'active' : '' }}">
+          <div class="box-top">
+            <div class="username">
+              <strong>{{ $commentaire->prenoms }}</strong>
+            </div>
+            <div class="etoile">
+            <i class="fa-solid fa-star"></i>
+             <i class="fa-solid fa-star"></i>
+           <i class="fa-solid fa-star"></i>
+          <i class="fa-solid fa-star"></i>
+            <i class="fa-regular fa-star"></i>
+            </div>
+            <p>{{ $commentaire->commantaire }}</p>
+          </div>
+        </div>
+      @endforeach
+    </div>
 
-                    <div class="partieprofil2 card container mt-3 mb-2">
-                        <h4>Création</h4>
-                     
+  </div>
+</div></div>
 
+           <div class="partieprofil2 card container mt-3 mb-2">
+                   <h4>Création</h4>
                         <div class="container">
                         <div class="row">
                             <div  class="col-md-6 mt-4 h-50">

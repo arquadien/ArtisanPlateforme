@@ -56,7 +56,7 @@
                         <a href="{{ route('profil') }}" class="user-icone">
                             <i class="fa-solid fa-user"></i>
                             <p>Mon profil</p>
-                            <span>></span>
+                            
                         </a>
                         </a>
                         <a href="#" class="user-icone">
@@ -66,7 +66,7 @@
                                 @csrf
                                 <button style="border: none; background: none;">se déconnecter</button>
                               </form>
-                            <span>></span>
+                           
                         </a>
                     </div>
                 </div>
@@ -224,17 +224,22 @@
                 <div class="col-lg-8 mt-3 ">
 
                     <div class="partieprofil2 card container">
-                        <h4>Service proposée</h4>
+                        <h4>{{$metier->domaine}}</h4>
                         <p class="m-3">
                         {{ $metier->description}}
                         </p>
                     </div>
                     <div class="card mt-3 container partieprofil2">
                         <h4>Lieu du travail</h4>
+                        <div>
+                        <iframe src="https://www.google.com/maps/embed?pb=!1m10!1m8!1m3!1d127119.26222333536!2d-4.0645722!3d5.343924!3m2!1i1024!2i768!4f13.1!5e0!3m2!1sfr!2sci!4v1722279471962!5m2!1sfr!2sci"
+                          width="560" height="278" style="border:0; width: 100%;" 
+                           allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+                        </div>
                         <div class="m-3">
-                            <p>{{ Auth::user()->ville}}</p>
-                            <p>{{ Auth::user()->commune}}</p>
-                            <p>{{ Auth::user()->quartier}}</p>
+                            <p><b>Ville : </b> {{ Auth::user()->ville}}</p>
+                            <p><b>Commune : </b>{{ Auth::user()->commune}}</p>
+                            <p><b>Quartier : </b>{{ Auth::user()->quartier}}</p>
                         </div>
                     </div>
                     <div class="card mt-3 container partieprofil2">
@@ -249,33 +254,30 @@
                         </div> 
 
                         <h4 class="mt-2">Temoignage</h4>
-                        <div class=" col-12">
-                            <div id="carouselExampleAutoplaying" class="carousel slide" data-bs-ride="carousel">
-                                <div class="carousel-inner">
-                                  <div class="carousel-item active ">
-                                  <div class="carousel-item">
-                                  @foreach($commentaires as $commentaire)
-                                    <div class="box-top m-3">
-                                        <div class="username">
-                                          <strong>{{ $commentaire->prenoms }}</strong>
-                                        </div>
-                                        <div class="etoile">
-                                          <i class="fa-solid fa-star"></i>
-                                          <i class="fa-solid fa-star"></i>
-                                          <i class="fa-solid fa-star"></i>
-                                          <i class="fa-solid fa-star"></i>
-                                          <i class="fa-regular fa-star"></i>
-                                        </div>
-                                        <p>{{ $commentaire->commantaire}}</p>
-                                      </div>
-                                  </div>
-                                @endforeach
-                                </div>
-                               
-                              </div>
-                      
-                        </div>
-                    </div>
+                        <div class="col-12 container mt-3">
+  <div id="carouselExampleAutoplaying" class="carousel slide" data-bs-ride="carousel">
+    <div class="carousel-inner">
+      @foreach($commentaires as $index => $commentaire)
+        <div class="carousel-item {{ $index === 0 ? 'active' : '' }}">
+          <div class="box-top">
+            <div class="username">
+              <strong>{{ $commentaire->prenoms }}</strong>
+            </div>
+            <div class="etoile">
+            <i class="fa-solid fa-star"></i>
+             <i class="fa-solid fa-star"></i>
+             <i class="fa-solid fa-star"></i>
+             <i class="fa-solid fa-star"></i>
+             <i class="fa-regular fa-star"></i>
+            </div>
+            <p>{{ $commentaire->commantaire }}</p>
+          </div>
+        </div>
+      @endforeach
+    </div>
+
+  </div>
+</div></div>
 
                     <div class="partieprofil2 card container mt-3 mb-2">
                         <h4>Création</h4>

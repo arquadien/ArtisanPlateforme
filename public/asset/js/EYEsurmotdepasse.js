@@ -6,10 +6,11 @@ let icon = document.querySelector('.motdepasse i');
 icon.onclick = function() {
   if (input.type === "password") {
     input.type = "text";
-    icon.classList.remove('active');
+    icon.classList.add('active');
   } else {
     input.type = "password";
-    icon.classList.add('active');
+  
+    icon.classList.remove('active');
   }
 };
 
@@ -18,10 +19,11 @@ let icons = document.querySelector('.confirmation i');
 icons.onclick = function() {
   if (inputs.type === "password") {
     inputs.type = "text";
-    icons.classList.remove('pret');
+    icons.classList.add('pret');
+    
   } else {
     inputs.type = "password";
-    icons.classList.add('pret');
+    icons.classList.remove('pret');
   }
 };
 

@@ -9,7 +9,7 @@
     <title>Formulaire d'inscription</title>
 </head>
 <body>
-  <div  id="containerinscription" style="background-color: #ff9900;" >
+  <div id="containerinscription" >
  
     <div class="">
           <h1 style="color:  green;" class="text-center">INSCRIPTION ARTISANT</h1></div>
@@ -43,14 +43,14 @@
             <label class="form-label" for="">Mot de passe</label>
           <input  class="form-control" type="password" name="password" required>  
           <span class="toggle-password" onclick="togglePasswordVisibility('password')">
-            <i class="fa-regular fa-eye"></i>
+            <i class="fa-regular fa-eye-slash"></i>
           </span>
         </div>
         <div  class="col-md-6 confirmation">
           <label class="form-label" for="">Confirmation mot de passe</label>
           <input  class="form-control" type="password" name="verification_mdp" required>  
           <span class="toggle-password" onclick="togglePasswordVisibility('password')">
-            <i class="fa-regular fa-eye"></i>
+            <i class="fa-regular fa-eye-slash"></i>
           </span>
         </div>
         

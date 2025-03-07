@@ -9,8 +9,12 @@
     <title>Liste d'artisans</title>
 </head>
 <body>
+<div class="text-center mt-3">
+  <a href="{{ route('accueil') }}">
+<button id="user_boutton">Retour à l'acceuil</button></a></div>
 
-<div class="container">
+
+<div class="container mt-3">
 <div class="row">
 
 @if($liste->isEmpty())

@@ -54,7 +54,7 @@
                 <a href="{{ route('profil') }}" class="user-icone">
                   <i class="fa-solid fa-user"></i>
                   <p>Mon profil</p>
-                  <span>></span>
+                 
                 </a>
                 
                 <a href="#" class="user-icone">
@@ -64,7 +64,7 @@
                     @csrf
                     <button style="border: none; background: none;">se déconnecter</button>
                   </form>
-                  <span>></span>
+               
                 </a>
               </div>
             </div>
@@ -94,7 +94,7 @@
             <h3 style="color: #ff9900;">Envoyer-nous votre message</h3>
             <div>
          
-          <form action="">
+          <form action="" >
             <div class="row">
               <div class="col-md-6 mt-3">
                 <input class="form-control" type="text" placeholder="nom">
@@ -110,7 +110,7 @@
               </div>
             </div>
             <div class=" mt-3 col-12">
-              <input type="submit " class="w-100 btn btn-outline-success  p-2" value="Envoyer">
+              <input type="submit" class="w-100 btn btn-outline-success p-2" value="Envoyer">
             </div>
           </form></div>
         
@@ -146,8 +146,6 @@
   <!---DEBUT DE FOOTER-->
   @extends('Layout.footer')
   <!--- FIN DE FOOTER-->
->
-
 
 
 
@@ -176,8 +174,25 @@
 
 
  
-  <script src="asset/js/navbar.js"></script>
-  <script src="asset/js/jquery.min3.js"></script>
-    <script src="asset/js/bootstrap.bundle.min.js"></script>
+  <script src="{{asset('asset/js/jquery.min3.js')}}"></script>
+    <script src="{{asset('asset/js/bootstrap.bundle.min.js')}}"></script>
+    <script>
+
+let menuWrap = document.querySelector('.menu-wrap');
+function toggleMenu() {
+    menuWrap.classList.toggle('open-menu');
+}
+
+  $(document).ready(function() {
+    const menuHamburger = document.querySelector(".fa-bars");
+    const navLink = document.querySelector(".nav-link");
+
+  if (menuHamburger && navLink) {
+    menuHamburger.addEventListener('click', function() {
+      navLink.classList.toggle('mobilemenu');
+    });
+  }
+});
+    </script>
 </body>
 </html>

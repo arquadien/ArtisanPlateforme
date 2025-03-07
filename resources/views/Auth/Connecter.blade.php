@@ -24,15 +24,15 @@
     
 <form class="container" action="{{route('connexion')}}" method="post">
   @csrf
-    <label for="" class="form-label mt-3">Numero de telephone</label>
+    <label for="" class="form-label ">Numero de telephone</label>
    <input class="form-control" type="tel"  placeholder="phone" name="phone" required value="{{old('numero_de_telephone')}}">
    <div class="s6_motdepasse">
    <label for="" class="form-label mt-3">Mot de passe</label>
    <input class="form-control" type="password" name="password" placeholder="mot de passe" required>
-   <i class="fa-regular fa-eye"></i>
+   <i class="fa-regular fa-eye-slash"></i>
 </div>
    <input type="checkbox">
-   <label class="mt-4" for=""> Souviens toi de moi</label> <br>
+   <label class="mt-2" for=""> Souviens toi de moi</label> <br>
    <input class="mt-4 s6_submit  text-white" type="submit" value="se connecter">
    <div class="s6_lien mt-2">
    <a  href="#" class="s6_monlien">Mot de passe oublier ?</a></div>
@@ -56,10 +56,11 @@ let icones = document.querySelector('.s6_motdepasse i');
 icones.onclick = function() {
   if (s6_input.type === "password") {
     s6_input.type = "text";
-    icones.classList.remove('active');
+    icones.classList.add('active');
+   
   } else {
     s6_input.type = "password";
-    icones.classList.add('active');
+    icones.classList.remove('active');
   }
 };
   </script>

@@ -36,7 +36,6 @@
                 <a href="{{ route('profil') }}" class="user-icone">
                   <i class="fa-solid fa-user"></i>
                   <p>Mon profil</p>
-                  <span>></span>
                 </a>
                 
                 <a href="#" class="user-icone">
@@ -46,7 +45,6 @@
                     @csrf
                     <button style="border: none; background: none;">se déconnecter</button>
                   </form>
-                  <span>></span>
                 </a>
               </div>
             </div>

@@ -33,14 +33,14 @@
                         <h1 class="mt-2">{{ $artisan->nom}} {{ $artisan->prenoms}}</h1>
 
                         <div class="mt-2 text-center ">
-                        @if (auth()->user()->numero_whatsapp)
+                        @if ($artisan->numero_whatsapp)
                             <a id="what" href="https://api.whatsapp.com/send?phone={{ $artisan->numero_whatsapp}}"><i class="fa-brands fa-whatsapp"></i></a>
                             @else
                                 <p>Numéro de téléphone non renseigné.</p>
                             @endif
 
                             <!-- Lien vers le téléphone -->
-                            <a id="tel" href="tel:{{ $artisan->phone}"><i class="fa-solid fa-phone"></i></a>
+                            <a id="tel" href="tel:{{ $artisan->phone}}"><i class="fa-solid fa-phone"></i></a>
 
                         </div>
                     </div>
@@ -91,11 +91,13 @@
                               
                                         </div>
                                         <div class="etoile">
-                                          <i class="fa-solid fa-star"></i>
-                                          <i class="fa-solid fa-star"></i>
-                                          <i class="fa-solid fa-star"></i>
-                                          <i class="fa-solid fa-star"></i>
-                                          <i class="fa-regular fa-star"></i>
+                                        @for ($i = 1; $i <= 5; $i++)
+                                            @if ($i <= $commentaire->note)
+                                            <i class="fa-solid fa-star"></i> <!-- Étoile pleine -->
+                                            @else
+                                            <i class="fa-regular fa-star"></i> <!-- Étoile vide -->
+                                            @endif
+                                        @endfor
                                         </div>
                                         <p>{{ $commentaire->commantaire}}</p>
                                       </div>

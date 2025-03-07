@@ -9,25 +9,35 @@
     <title>Liste d'artisans</title>
 </head>
 <body>
+<div class="text-center mt-3">
+  <a href="{{ route('accueil') }}">
+<button id="user_boutton">Retour à l'acceuil</button></a></div>
+<!-- RECHERCHE -->
 
-<div class="container">
+
+<div class="container ">
 <div class="row">
-
+<nav class="navbar W-50 ">
+  <div class="container-fluid ">
+    <form class="d-flex" role="search">
+      <input class="form-control me-2" type="search" placeholder="" aria-label="Search">
+      <button class="btn btn-outline-success" type="submit">Recherche</button>
+    </form>
+  </div>
+</nav>
 @if($artisans->isEmpty())
     <p>Aucun artisan trouvé pour cet metier.</p>
 @else
     @foreach($artisans as $info)
+    
         <div class="col-md-4">
         <div class="card mt-3">
             <div class="heads"> <img src="storage/{{$info->photo}}" alt=""></div>
             
             <div class="bodys">
                 <div class="info text-center"><h2>{{ $info->nom}} {{ $info->prenoms }} </h2>
-            <h4>Metier</h4> </div>
-        <div class="appel text-center">
-            <a href="{{ $info->phone}}"><i class="fa-solid fa-phone "></i></a>
-            <a href="{{ $info->numero_whatsapp}}"><i class="fa-brands fa-whatsapp "></i></a>
-        </div>
+            <h4>{{ $info->commune}}</h4> </div>
+        
         <div class="text-center mt-2   ">
         <a class="text-success fw-bold " href="{{route ('profil_recherche',$info->id) }}"> Savoir plus</a></div>
         </div>

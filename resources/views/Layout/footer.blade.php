@@ -28,7 +28,7 @@
             <a href="mailto:artisanexpress41@gmail.com"> <br> artisanexpress41@gmail.com</a>
           </li>
           <li> Téléphone : <a href="">+225 01 02 43 42 87</a></li>
-          <li>Adresse : <a href="">Cocody 2 plateaux</a></li>
+          <li>Adresse : <a href="https://maps.app.goo.gl/dRD6heKykCgcZMUDA">Cocody 2 plateaux</a></li>
 
           </ul>
         </div>

@@ -64,9 +64,8 @@
       </div>
       <div class="col-12">
         <label class="mt-2" for="">Description</label>
-        <textarea  class="form-control mt-2" name="description" id="message" cols="5" rows="5" placeholder="ecrivez ce dont vous avez besoin" 
-        maxlength="200" oninput="updateCounter()"></textarea>
-
+        <textarea class="form-control mt-2" name="description" id="message" cols="30" rows="5"
+         placeholder="Écrivez ce dont vous avez besoin" maxlength="300" oninput="updateCounter()"></textarea>
         <span id="s2_counter">300</span> caractere restants
       </div>
       <input type="hidden" name="latitude" id="latitude">
@@ -83,15 +82,14 @@
 
     <script src="asset/js/bootstrap.bundle.min.js"></script>
     <script>
-      function updateCounter(){
-        let maxlength = 300;
-        let textlong= document.getElementById("message").value.length;
-        let bien = maxlength-textlong;
-        document.getElementById("counter").textContent = bien;
-      }    
-    </script>
+      
+      function updateCounter() {
+    let maxlength = 300;
+    let textlong = document.getElementById("message").value.length;
+    let remainingCharacters = maxlength - textlong;
+    document.getElementById("s2_counter").textContent = remainingCharacters;
+};
 
-<script>
   document.addEventListener('DOMContentLoaded', function() {
     const position = document.querySelector('#coordonnees');
 

@@ -7,7 +7,7 @@
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
   <link rel="stylesheet" href="asset/CSS/bootstrap.min.css">
   <link rel="stylesheet" href="asset/CSS/STYLE_combinéACCEUIL.css">
-  <title>Document</title>
+  <title>packs publicitaire</title>
 </head>
 
 <body>
@@ -55,7 +55,7 @@
                 <a href="{{ route('profil') }}" class="user-icone">
                   <i class="fa-solid fa-user"></i>
                   <p>Mon profil</p>
-                  <span>></span>
+                 
                 </a>
                 
                 <a href="#" class="user-icone">
@@ -65,7 +65,7 @@
                     @csrf
                     <button style="border: none; background: none;">se déconnecter</button>
                   </form>
-                  <span>></span>
+                 
                 </a>
               </div>
             </div>
@@ -163,13 +163,26 @@
 
 
 
-
-
-
-
-<script src="asset/js/navbar.js"></script>
 <script src="asset/js/jquery.min3.js"></script>
   <script src="asset/js/bootstrap.bundle.min.js"></script>
+  <script>
+
+let menuWrap = document.querySelector('.menu-wrap');
+function toggleMenu() {
+    menuWrap.classList.toggle('open-menu');
+}
+
+  $(document).ready(function() {
+    const menuHamburger = document.querySelector(".fa-bars");
+    const navLink = document.querySelector(".nav-link");
+
+  if (menuHamburger && navLink) {
+    menuHamburger.addEventListener('click', function() {
+      navLink.classList.toggle('mobilemenu');
+    });
+  }
+});
+  </script>
 </body>
 
 </html>

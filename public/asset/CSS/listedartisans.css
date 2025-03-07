@@ -2,6 +2,12 @@
 padding: 0;
 
 }
+#user_boutton{
+  padding: 7px 10px;
+  border-radius: 20px;
+  background-color: black;
+  color: white;
+}
 
 .card{
    border: 1px solid #444;

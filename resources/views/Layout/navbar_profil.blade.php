@@ -20,18 +20,14 @@
                     <a href="POFIL.html" class="user-icone">
                         <i class="fa-solid fa-user"></i>
                         <p>Mon profil</p>
-                        <span>></span>
+                       
                     </a>
-                    <a href="modifierinformation.html" class="user-icone">
-                        <i class="fas fa-user-edit"></i>
-                        <p>Modifier mes information</p>
-                        <span>></span>
-                    </a>
+                 
                     </a>
                     <a href="#" class="user-icone">
                         <i class="fa-solid fa-arrow-right-from-bracket"></i>
                         <p>Se deconnecter</p>
-                        <span>></span>
+                        
                     </a>
                 </div>
             </div>
